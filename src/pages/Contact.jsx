@@ -26,12 +26,12 @@ export default function Contact() {
 
   return (
     <main style={{ paddingTop: '64px' }}>
-      <section style={{ padding: '5rem 1.5rem 8rem', minHeight: 'calc(100vh - 64px - 150px)', display: 'flex', alignItems: 'center' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter) var(--section-y-end)', minHeight: 'calc(100vh - 64px - 150px)', display: 'flex', alignItems: 'center' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'calc(var(--grid-gap) * 1.5)', alignItems: 'center' }}>
 
           {/* Left: Text content */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}>
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1.5rem', lineHeight: 1.1, letterSpacing: '-0.03em', textTransform: 'uppercase' }}>
+            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1.5rem', lineHeight: 1.1, letterSpacing: 0, textTransform: 'uppercase' }}>
               {text.title}
             </h1>
 
@@ -48,24 +48,24 @@ export default function Contact() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a href="mailto:meritxellguzman1@gmail.com"
                 className="brutal-shadow"
-                style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--text-primary)', textDecoration: 'none', padding: '1rem', background: 'var(--bg-pastel-yellow)', border: '1px solid var(--border)', width: 'fit-content', transition: 'all 0.2s' }}
+                style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--text-primary)', textDecoration: 'none', padding: '1rem', background: 'var(--bg-pastel-yellow)', border: '1px solid var(--border)', width: '100%', maxWidth: '480px', transition: 'all 0.2s', overflowWrap: 'anywhere' }}
                 onMouseOver={e => { e.currentTarget.style.transform = 'translate(-2px, -2px)'; e.currentTarget.style.boxShadow = '0 10px 15px -3px rgb(0 0 0 / 0.1)' }}
                 onMouseOut={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.05)' }}>
                 <div style={{ width: '48px', height: '48px', background: 'var(--bg-surface)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Mail size={24} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <p style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-primary)', fontFamily: 'JetBrains Mono, monospace', marginBottom: '0.2rem', textTransform: 'uppercase' }}>Email</p>
+                  <p style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--color-cyber-pink)', fontFamily: 'JetBrains Mono, monospace', marginBottom: '0.2rem', textTransform: 'uppercase' }}>Email</p>
                   <p style={{ fontWeight: 600, fontSize: '1rem' }}>meritxellguzman1@gmail.com</p>
                 </div>
               </a>
 
-              <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
                 <a href="https://github.com/Merigu10" target="_blank" rel="noopener noreferrer"
                   className="btn-secondary">
                   <Github size={18} /> GitHub
                 </a>
-                <a href="https://linkedin.com/in/mertixellgv" target="_blank" rel="noopener noreferrer"
+                <a href="https://linkedin.com/in/meritxellgv" target="_blank" rel="noopener noreferrer"
                   className="btn-secondary">
                   <Linkedin size={18} /> LinkedIn
                 </a>
@@ -86,7 +86,7 @@ export default function Contact() {
                 <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0, textTransform: 'uppercase' }}>{text.form_title}</h2>
               </div>
 
-              <div style={{ padding: '2rem' }}>
+              <div style={{ padding: 'var(--card-padding)' }}>
                 {formState === 'success' ? (
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                     style={{ textAlign: 'center', padding: '3rem 0' }}>
@@ -145,7 +145,7 @@ export default function Contact() {
                       className="btn-primary"
                       style={{
                         width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', marginTop: '0.5rem',
-                        background: 'var(--text-primary)', color: 'var(--bg-primary)',
+                        background: 'var(--accent-strong)', color: 'var(--color-polar-white)',
                         cursor: formState === 'submitting' ? 'wait' : 'pointer',
                         opacity: formState === 'submitting' ? 0.7 : 1,
                       }}>

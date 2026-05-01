@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { ExternalLink, ArrowRight } from 'lucide-react'
 import { Github } from '../components/ui/Icons'
 import { projects } from '../data/projects'
 import { useLanguage } from '../context/LanguageContext'
@@ -20,13 +19,13 @@ export default function Projects() {
 
   return (
     <main style={{ paddingTop: '64px' }}>
-      <section style={{ padding: '5rem 1.5rem 8rem' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter) var(--section-y-end)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             style={{ marginBottom: '4rem', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '-0.03em', textTransform: 'uppercase' }}>
+            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: 0, textTransform: 'uppercase' }}>
               {text.title}
             </h1>
             <p style={{ color: 'var(--text-muted)', maxWidth: '600px', lineHeight: 1.7, fontSize: '1.1rem', fontWeight: 500 }}>
@@ -35,7 +34,7 @@ export default function Projects() {
           </motion.div>
 
           {/* Project cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'calc(var(--grid-gap) * 1.5)' }}>
             {projects.map((project, i) => {
               const bg = `var(--bg-pastel-${project.color})`
               return (
@@ -51,7 +50,7 @@ export default function Projects() {
                   {/* Title Bar */}
                   <div style={{ 
                     borderBottom: '1px solid var(--border)', background: bg, 
-                    padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                    padding: '1rem var(--card-padding)', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                     flexWrap: 'wrap', gap: '1rem'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -63,10 +62,10 @@ export default function Projects() {
                     </span>
                   </div>
 
-                  <div style={{ padding: '2.5rem', display: 'grid', gridTemplateColumns: '1fr', gap: '2rem' }}>
+                  <div style={{ padding: 'var(--card-padding)', display: 'grid', gridTemplateColumns: '1fr', gap: 'var(--grid-gap)' }}>
                     {/* Meta row */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', fontWeight: 700, color: 'var(--bg-primary)', background: 'var(--text-primary)', padding: '0.4rem 0.8rem' }}>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-polar-white)', background: 'var(--color-cyber-pink)', padding: '0.4rem 0.8rem', borderRadius: '9999px' }}>
                         {project.type[language]}
                       </span>
                       <p style={{ fontWeight: 600, fontSize: '1rem', color: 'var(--text-muted)' }}>{project.subtitle[language]}</p>
@@ -112,7 +111,7 @@ export default function Projects() {
 
           {/* Bottom note */}
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.3 }}
-            style={{ marginTop: '5rem', padding: '2rem', border: '1px dashed var(--border)', textAlign: 'center', background: 'var(--bg-surface)' }}>
+            style={{ marginTop: 'var(--section-y)', padding: 'var(--card-padding)', border: '1px dashed var(--border)', textAlign: 'center', background: 'var(--bg-surface)' }}>
             <p style={{ color: 'var(--text-primary)', fontSize: '1rem', fontWeight: 600, fontFamily: 'JetBrains Mono, monospace' }}>
               {text.bottom_note}{' '}
               <Link to="/labs" style={{ color: 'var(--text-primary)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>

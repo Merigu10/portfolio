@@ -40,13 +40,13 @@ export default function Labs() {
 
   return (
     <main style={{ paddingTop: '64px' }}>
-      <section style={{ padding: '5rem 1.5rem 8rem' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter) var(--section-y-end)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             style={{ marginBottom: '2rem', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '-0.03em', textTransform: 'uppercase' }}>
+            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: 0, textTransform: 'uppercase' }}>
               {text.title}
             </h1>
             <p style={{ color: 'var(--text-muted)', maxWidth: '600px', lineHeight: 1.7, fontSize: '1.1rem', fontWeight: 500 }}>
@@ -58,7 +58,7 @@ export default function Labs() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
             style={{
               display: 'flex', alignItems: 'flex-start', gap: '1rem',
-              padding: '1.5rem', marginBottom: '4rem',
+              padding: 'var(--card-padding)', marginBottom: '4rem',
               background: 'var(--bg-surface)', border: '1px solid var(--border)',
               boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.05)'
             }}>
@@ -69,7 +69,7 @@ export default function Labs() {
           </motion.div>
 
           {/* Labs grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'var(--grid-gap)' }}>
             {labs.map((lab, i) => {
               const bg = `var(--bg-pastel-${lab.color})`
               return (
@@ -83,7 +83,7 @@ export default function Labs() {
                   }}>
 
                   {/* Title Bar */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 1.5rem', borderBottom: '1px solid var(--border)', background: bg }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem var(--card-padding)', borderBottom: '1px solid var(--border)', background: bg, flexWrap: 'wrap', gap: '0.75rem' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                       <span style={{ fontSize: '1.5rem' }}>{lab.icon}</span>
                       <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-primary)', margin: 0 }}>{lab.title[language]}</h2>
@@ -91,7 +91,7 @@ export default function Labs() {
                     <LabStatus status={lab.status} language={language} />
                   </div>
 
-                  <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', flex: 1 }}>
+                  <div style={{ padding: 'var(--card-padding)', display: 'flex', flexDirection: 'column', gap: '1.5rem', flex: 1 }}>
                     {/* Area */}
                     <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)', textDecoration: 'underline' }}>
                       {text.area} {lab.area[language].toUpperCase()}

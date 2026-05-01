@@ -23,18 +23,11 @@ const skills = [
 ]
 
 function TypewriterText({ text }) {
-  const [displayed, setDisplayed] = useState('')
   const [idx, setIdx] = useState(0)
-
-  useEffect(() => {
-    setDisplayed('');
-    setIdx(0);
-  }, [text]);
 
   useEffect(() => {
     if (idx < text.length) {
       const timer = setTimeout(() => {
-        setDisplayed(prev => prev + text[idx])
         setIdx(i => i + 1)
       }, 35)
       return () => clearTimeout(timer)
@@ -43,7 +36,7 @@ function TypewriterText({ text }) {
 
   return (
     <span>
-      {displayed}
+      {text.slice(0, idx)}
       <span style={{
         display: 'inline-block', width: '8px', height: '1em',
         background: 'var(--text-primary)', marginLeft: '4px', verticalAlign: 'text-bottom',
@@ -67,11 +60,11 @@ export default function Home() {
     <main>
       {/* ── HERO ── */}
       <section style={{ position: 'relative', minHeight: '100vh', display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', paddingTop: '7rem', width: '100%' }}>
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: '1100px', margin: '0 auto', padding: '0 var(--page-gutter)', paddingTop: '7rem', width: '100%' }}>
 
           <div style={{
             border: '1px solid var(--border)',
-            padding: '3rem',
+            padding: 'var(--hero-card-padding)',
             background: 'var(--bg-primary)',
             boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)',
             position: 'relative'
@@ -86,7 +79,7 @@ export default function Home() {
             <motion.div custom={0} initial="hidden" animate="visible" variants={fadeUp}>
               <span style={{
                 fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', fontWeight: 600,
-                color: 'var(--text-primary)', letterSpacing: '0.05em', textTransform: 'uppercase',
+                color: 'var(--color-cyber-pink)', letterSpacing: 0, textTransform: 'uppercase',
                 display: 'inline-block', marginBottom: '1.5rem',
                 background: 'var(--bg-pastel-yellow)', padding: '0.2rem 0.5rem',
                 border: '1px solid var(--border)'
@@ -97,9 +90,9 @@ export default function Home() {
 
             {/* headline */}
             <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp}
-              style={{ fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1, marginBottom: '1.5rem', color: 'var(--text-primary)', letterSpacing: '-0.03em' }}>
+              style={{ fontSize: 'clamp(2.6rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.05, marginBottom: '1.5rem', color: 'var(--text-primary)', letterSpacing: 0 }}>
               {text.headline_1}<br />
-              <span style={{ background: 'var(--bg-pastel-blue)', display: 'inline-block', padding: '0 0.5rem', marginTop: '0.2rem', border: '1px solid var(--border)' }}>
+              <span style={{ color: 'var(--color-cyber-pink)', display: 'inline-block', padding: '0 0.5rem', marginTop: '0.2rem', border: '1px solid rgba(244, 114, 182, 0.35)', background: 'rgba(244, 114, 182, 0.08)' }}>
                 {text.headline_highlight}
               </span>{' '}
               {text.headline_2}
@@ -108,7 +101,7 @@ export default function Home() {
             {/* subheadline with typewriter */}
             <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp}
               style={{ fontSize: '1rem', color: 'var(--text-muted)', maxWidth: '600px', lineHeight: 1.7, marginBottom: '2.5rem', fontFamily: 'JetBrains Mono, monospace' }}>
-              <TypewriterText text={text.typewriter} />
+              <TypewriterText key={text.typewriter} text={text.typewriter} />
             </motion.p>
 
             {/* CTAs */}
@@ -124,10 +117,10 @@ export default function Home() {
 
             {/* Social links */}
             <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp}
-              style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+              style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
               {[
                 { href: 'https://github.com/Merigu10', icon: <Github size={20} />, label: 'GitHub' },
-                { href: 'https://linkedin.com/in/mertixellgv', icon: <Linkedin size={20} />, label: 'LinkedIn' },
+                { href: 'https://linkedin.com/in/meritxellgv', icon: <Linkedin size={20} />, label: 'LinkedIn' },
                 { href: 'mailto:meritxellguzman1@gmail.com', icon: <Mail size={20} />, label: 'Email' },
               ].map(link => (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
@@ -150,11 +143,11 @@ export default function Home() {
       </section>
 
       {/* ── SKILLS ── */}
-      <section style={{ padding: '5rem 1.5rem', borderBottom: '1px solid var(--border)' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter)', borderBottom: '1px solid var(--border)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <span style={{ width: '40px', height: '2px', background: 'var(--border)' }}></span>
+            <h2 style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--color-cyber-pink)', textTransform: 'uppercase', letterSpacing: 0, marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <span style={{ width: '40px', height: '2px', background: 'var(--color-cyber-pink)' }}></span>
               {text.skills_title}
             </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.8rem' }}>
@@ -181,12 +174,12 @@ export default function Home() {
       </section>
 
       {/* ── FEATURED PROJECTS PREVIEW ── */}
-      <section style={{ padding: '5rem 1.5rem 8rem', background: 'var(--bg-surface)' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter) var(--section-y-end)', background: 'var(--bg-surface)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem', flexWrap: 'wrap', gap: '1rem', borderBottom: '1px solid var(--border)', paddingBottom: '1rem' }}>
             <div>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>{text.projects_title}</h2>
+              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: 0 }}>{text.projects_title}</h2>
             </div>
             <Link to="/projects" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)', textDecoration: 'none', fontSize: '1rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', transition: 'transform 0.2s' }}
               onMouseOver={e => e.currentTarget.style.transform = 'translateX(5px)'}
@@ -195,7 +188,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'var(--grid-gap)' }}>
             {projects.map((project, i) => {
               const bg = `var(--bg-pastel-${project.color})`
               return (
@@ -205,7 +198,7 @@ export default function Home() {
                   className="brutal-shadow"
                   style={{
                     background: 'var(--bg-primary)',
-                    padding: '2rem',
+                    padding: 'var(--card-padding)',
                     border: '1px solid var(--border)',
                     display: 'flex', flexDirection: 'column',
                     position: 'relative'
@@ -219,7 +212,7 @@ export default function Home() {
                   <div style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>{project.icon}</div>
 
                   <div style={{ marginBottom: '1rem' }}>
-                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', fontWeight: 700, background: 'var(--text-primary)', color: 'var(--bg-primary)', padding: '0.2rem 0.5rem' }}>{project.type[language]}</span>
+                    <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', fontWeight: 700, background: 'var(--color-cyber-pink)', color: 'var(--color-polar-white)', padding: '0.2rem 0.5rem', borderRadius: '9999px' }}>{project.type[language]}</span>
                   </div>
 
                   <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>{project.title[language]}</h3>

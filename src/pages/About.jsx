@@ -28,13 +28,13 @@ export default function About() {
 
   return (
     <main style={{ paddingTop: '64px' }}>
-      <section style={{ padding: '5rem 1.5rem 8rem' }}>
+      <section style={{ padding: 'var(--section-y) var(--page-gutter) var(--section-y-end)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
             style={{ marginBottom: '4rem', borderBottom: '1px solid var(--border)', paddingBottom: '2rem' }}>
-            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '-0.03em', textTransform: 'uppercase' }}>
+            <h1 style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: 0, textTransform: 'uppercase' }}>
               {text.title}
             </h1>
             <p style={{ color: 'var(--text-muted)', maxWidth: '600px', lineHeight: 1.7, fontSize: '1.1rem', fontWeight: 500 }}>
@@ -43,7 +43,7 @@ export default function About() {
           </motion.div>
 
           {/* Top Section: Bio & Career */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '4rem', alignItems: 'start', marginBottom: '4rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 'calc(var(--grid-gap) * 1.5)', alignItems: 'start', marginBottom: '4rem' }}>
 
             {/* Left Column: Bio & Socials */}
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.65 }}>
@@ -56,7 +56,7 @@ export default function About() {
 
               {/* Philosophy callout */}
               <div className="brutal-shadow" style={{
-                padding: '2rem', marginBottom: '3rem',
+                padding: 'var(--card-padding)', marginBottom: '3rem',
                 background: 'var(--bg-pastel-yellow)', border: '1px solid var(--border)',
               }}>
                 <p style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.85rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem', textTransform: 'uppercase' }}>
@@ -73,12 +73,12 @@ export default function About() {
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.3, duration: 0.65 }}>
 
               <div style={{ border: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
-                <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--text-primary)', color: 'var(--bg-primary)', padding: '1rem 1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--surface-raised)', color: 'var(--text-primary)', padding: '1rem var(--card-padding)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <Briefcase size={20} />
                   <h2 style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>{text.career_title}</h2>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', padding: '1.5rem', gap: '2rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', padding: 'var(--card-padding)', gap: '2rem' }}>
                   {career.map((item, i) => (
                     <motion.div key={item.id}
                       custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
@@ -123,11 +123,11 @@ export default function About() {
           {/* Bottom Section: Full Width Stack Grid */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.65 }}>
             <div style={{ border: '1px solid var(--border)', background: 'var(--bg-surface)' }}>
-              <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--text-primary)', color: 'var(--bg-primary)', padding: '1rem 1.5rem' }}>
+              <div style={{ borderBottom: '1px solid var(--border)', background: 'var(--surface-raised)', color: 'var(--text-primary)', padding: '1rem var(--card-padding)' }}>
                 <h2 style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1.2rem', fontWeight: 800, margin: 0 }}>{text.tech_stack}</h2>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))' }}>
                 {stack.map((group, i) => {
                   const bg = `var(--bg-pastel-${group.color})`
                   return (
@@ -145,7 +145,7 @@ export default function About() {
                         </h3>
                       </div>
 
-                      <div style={{ padding: '1.5rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem', background: 'var(--bg-surface)', flex: 1 }}>
+                      <div style={{ padding: 'var(--card-padding)', display: 'flex', flexWrap: 'wrap', gap: '0.75rem', background: 'var(--bg-surface)', flex: 1 }}>
                         {group.techs.map(t => (
                           <span key={t} style={{
                             padding: '0.4rem 0.8rem', border: '1px solid var(--border)',
@@ -166,7 +166,7 @@ export default function About() {
             style={{ marginTop: '4rem', display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
             {[
               { href: 'https://github.com/Merigu10', icon: <Github size={18} />, label: 'GitHub', bg: 'var(--bg-pastel-blue)' },
-              { href: 'https://linkedin.com/in/mertixellgv', icon: <Linkedin size={18} />, label: 'LinkedIn', bg: 'var(--bg-pastel-blue)' },
+              { href: 'https://linkedin.com/in/meritxellgv', icon: <Linkedin size={18} />, label: 'LinkedIn', bg: 'var(--bg-pastel-blue)' },
               { href: 'mailto:meritxellguzman1@gmail.com', icon: <Mail size={18} />, label: 'Email', bg: 'var(--bg-pastel-blue)' },
             ].map(link => (
               <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"

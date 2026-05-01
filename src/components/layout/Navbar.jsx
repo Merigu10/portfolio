@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Terminal, Globe, Moon, Sun } from 'lucide-react'
+import { Menu, X, Terminal, Globe } from 'lucide-react'
 import { useLanguage } from '../../context/LanguageContext'
-import { useTheme } from '../../context/ThemeContext'
 import { t } from '../../data/translations'
 
 const navLinkKeys = [
@@ -17,19 +16,13 @@ const navLinkKeys = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
   const { language, toggleLanguage } = useLanguage()
-  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location])
 
   return (
     <motion.header
@@ -47,17 +40,17 @@ export default function Navbar() {
         borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
       }}
     >
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 1.5rem', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 var(--page-gutter)', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem' }}>
         {/* Logo */}
         <NavLink to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <div style={{
             width: '32px', height: '32px',
-            background: 'var(--text-primary)',
+            background: 'var(--accent-strong)',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
-            <Terminal size={16} color="var(--bg-primary)" />
+            <Terminal size={16} color="var(--color-polar-white)" />
           </div>
-          <span style={{ fontFamily: 'JetBrains Mono, monospace', fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
+          <span className="brand-text" style={{ fontFamily: 'JetBrains Mono, monospace', fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-primary)' }}>
             merigu<span style={{ color: 'var(--text-muted)' }}>.portfolio</span>
           </span>
         </NavLink>
@@ -70,6 +63,7 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
+                onClick={() => setMenuOpen(false)}
                 style={({ isActive }) => ({
                   padding: '0.4rem 1rem',
                   fontSize: '0.875rem',
@@ -91,19 +85,6 @@ export default function Navbar() {
 
           {/* Toggles */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            {/* Theme Toggle */}
-            <button onClick={toggleTheme}
-              style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'var(--bg-surface)', border: '1px solid var(--border)', borderRadius: '6px',
-                padding: '0.4rem', cursor: 'pointer', transition: 'all 0.2s', color: 'var(--text-primary)'
-              }}
-              onMouseOver={e => e.currentTarget.style.background = 'var(--bg-pastel-blue)'}
-              onMouseOut={e => e.currentTarget.style.background = 'var(--bg-surface)'}
-              aria-label="Toggle Theme">
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-            </button>
-
             {/* Language Toggle */}
             <button onClick={toggleLanguage}
               style={{
@@ -144,12 +125,13 @@ export default function Navbar() {
               overflow: 'hidden',
             }}
           >
-            <nav style={{ padding: '1rem 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <nav style={{ padding: '1rem var(--page-gutter)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {navLinkKeys.map(link => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   end={link.to === '/'}
+                  onClick={() => setMenuOpen(false)}
                   style={({ isActive }) => ({
                     padding: '0.75rem 1rem',
                     fontSize: '0.9rem',
@@ -177,6 +159,10 @@ export default function Navbar() {
         }
         @media (max-width: 767px) {
           .desktop-nav { display: none !important; }
+          .brand-text { font-size: 0.78rem !important; }
+        }
+        @media (max-width: 360px) {
+          .brand-text span { display: none; }
         }
       `}</style>
     </motion.header>
