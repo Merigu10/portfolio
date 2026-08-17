@@ -18,13 +18,13 @@ export const labs = [
     github: 'https://github.com/Merigu10/plant-node',
   },
   {
-    id: 'uimotion',
-    title: { en: 'UIMotion Engine', es: 'UIMotion Engine' },
+    id: 'micro-anim-kit',
+    title: { en: 'micro-anim-kit', es: 'micro-anim-kit' },
     area: { en: 'UI Animation · Frontend', es: 'Animación UI · Frontend' },
-    stack: ['React', 'Framer Motion', 'Canvas API', 'TypeScript'],
+    stack: ['React', 'Canvas API', 'TypeScript'],
     description: {
-      en: 'Library of reusable micro-animations for dashboard UIs: spring-physics entries, state transitions and canvas-based particles. Designed as a design system for rapid prototyping.',
-      es: 'Librería de microanimaciones reutilizables para paneles de control: físicas de rebote, transiciones de estado y partículas en canvas. Diseñada como un sistema para prototipado rápido.'
+      en: 'Zero-dependency design system of micro-animations built specifically for dashboard UIs: spring-physics entries, state transitions and canvas-based particles. ~7 kB gzipped, tree-shakeable, subpath-exported.',
+      es: 'Sistema de microanimaciones sin dependencias, diseñado específicamente para paneles de control: físicas de rebote, transiciones de estado y partículas en canvas. ~7 kB comprimido, tree-shakeable, con exports por subruta.'
     },
     why: {
       en: "Well-crafted animations are not decoration; they communicate state. A loading indicator that matches the interaction model reduces perceived latency.",
@@ -33,7 +33,7 @@ export const labs = [
     status: 'done',
     color: 'blue',
     icon: '✨',
-    github: 'https://github.com/Merigu10/uimotion-engine',
+    github: 'https://github.com/Merigu10/micro-anim-kit',
   },
   {
     id: 'emotilog',
